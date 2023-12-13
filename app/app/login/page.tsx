@@ -2,12 +2,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 
-
 export default function login() {
   const router = useRouter()
   const [name,setname] = useState('')
   const [passwd,setpasswd] = useState('')
-  
+
   const change_name= (e)=>{
     setname(e.target.value)
   }
