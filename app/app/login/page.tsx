@@ -1,17 +1,18 @@
 'use client'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
+import cookieauth from './cookies'
 
 export default function login() {
   const router = useRouter()
   const [name,setname] = useState('')
   const [passwd,setpasswd] = useState('')
-
-  const change_name= (e)=>{
+  
+  const change_name= (e:any)=>{
     setname(e.target.value)
   }
 
-  const change_passwd = (e) => {
+  const change_passwd = (e:any) => {
     setpasswd(e.target.value)
   }
 
@@ -31,7 +32,8 @@ export default function login() {
     .then(response => response.json())
     .then((data)=>{
       if (data['access']!=3){
-        router.push(process.env.app+['estudiantes','profesores','administrativos'][data['access']])
+        cookieauth(data['accesskey'])
+        router.push(process.env.app+'home')
       }else{
         alert('Por favor revise la información digitada')
       }
