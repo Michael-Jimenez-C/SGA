@@ -10,14 +10,14 @@ export default function submenu(titulo:any,items:any){
             setopcion("hidden")
         }
     }
-    let submenu=(<ul className={"bg-sky-500 flex flex-col text-center select-none duration-300 "+opcion}>
+    let submenu=(<ul className={"bg-sky-500 flex flex-col text-center select-none "+opcion}>
         {items.map((pares:any)=>(
-            <li className="hover:bg-sky-800 py-4 cursor-pointer">{pares[0]}</li>
+            <li className="hover:bg-sky-400 py-4 cursor-pointer">{pares[0]}</li>
         ))}
     </ul>)
     return(
         <ul className="bg-sky-950 flex flex-col text-center select-none">
-            <li className="hover:bg-sky-1000 py-4 cursor-pointer" onClick={
+            <li className="hover:bg-sky-900 py-4 cursor-pointer" onClick={
                 ()=>{cambiar_estado(opcion)}
             }>{titulo}</li>
             {submenu}
