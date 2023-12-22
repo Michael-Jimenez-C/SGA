@@ -16,8 +16,8 @@ export default function submenu(titulo:any,items:any){
         ))}
     </ul>)
     return(
-        <ul className="bg-sky-950 flex flex-col text-center select-none">
-            <li className="hover:bg-sky-900 py-4 cursor-pointer" onClick={
+        <ul className="bg-blue-500 flex flex-col text-center select-none">
+            <li className="hover:bg-blue-400 py-4 cursor-pointer" onClick={
                 ()=>{cambiar_estado(opcion)}
             }>{titulo}</li>
             {submenu}
