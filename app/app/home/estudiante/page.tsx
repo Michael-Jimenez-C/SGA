@@ -1,21 +1,9 @@
 'use client'
 import Hedr from '../header'
 import Submenu from '../submenu'
-import { useEffect } from 'react'
-import cookieverification from '../session_access_verification'
-import { useRouter } from 'next/navigation'
 
 export default function home() {
-  const router = useRouter()
-  const validar = async ()=>{
-    let res= await cookieverification(0);
-    if (!res){
-      router.push(process.env.app+'login')
-    }
-  }
-    useEffect(()=>{
-      validar()
-    })
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-gradient-to-r from-cyan-300 to-blue-500">
     <Hedr/>
