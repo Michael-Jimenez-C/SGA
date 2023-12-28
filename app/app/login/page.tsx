@@ -33,7 +33,7 @@ export default function login() {
     .then((data)=>{
       if (data['access']!=3){
         cookieauth(data['accesskey'])
-        router.push(process.env.app+'home')
+        router.push(process.env.app+'home/'+['estudiante','profesor','administrativo'][data['access']])
       }else{
         alert('Por favor revise la información digitada')
       }
