@@ -10,18 +10,38 @@ CORS(app)
 
 @app.route('/login',methods=['POST'])
 def login():
-    global conexion  
+    """Función que verifica la existencia de un usuario dado
+
+    Returns:
+        json: Contiene nombre y contraseña con hash256
+    """
+    global conexion    
+    db=conexion.SGADB
+
+
     data=request.get_json()
-    print(data)
+    
     encoder=sha256()
     encoder.hexdigest()
     encoder.update(bytes(data['pass'],encoding='latin-1'))
+
     temp=encoder.hexdigest()
-    conexion.SGADB
+
+    salida={'access':3, 'accesskey':(data['user'],temp)}
+    usuario=None
+    if (usuario:=db.USUARIOS.find_one({'Codigo':data['user'],'Secret':temp})) is not None:
+        salida['access']=usuario['Tipo-acceso']
+    return jsonify(salida)
     
-
-
-    return jsonify({'access':0, 'accesskey':('202020202020',temp)})
+    
+@app.route('/validar',methods=['POST'])
+def validar():
+    global conexion    
+    db=conexion.SGADB
+    data=request.get_json()
+    if (usuario:=db.USUARIOS.find_one({'Codigo':data['user'],'Secret':data['pass']})) is not None:
+        return jsonify({'result':True, 'Tipo-acceso':usuario['Tipo-acceso']})
+    return jsonify({'result':False})
 
 @app.route('/Pruebas')
 def pruebas():
@@ -33,7 +53,7 @@ def pruebas():
     temp=encoder.hexdigest()
 
     print({'Codigo':'202020202020','Secret':temp})
-    return db.ESTUDIANTES.find({'Codigo':'202020202020','Secret':temp})[0]
+    return db.USUARIOS.find_one({'Codigo':'202020202020','Secret':temp})
 
 
 app.run(debug=True)

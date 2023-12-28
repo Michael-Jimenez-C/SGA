@@ -18,13 +18,13 @@ export default function Submenu({titulo,items}: submenuprops){
     
     let submenu=(<ul className={"bg-sky-500 flex flex-col text-center select-none "+opcion}>
         {items.map((pares:any)=>(
-            <li className="hover:bg-sky-400 py-4 cursor-pointer" key={pares[0]}>{pares[0]}</li>
+            <li className="hover:bg-sky-400 py-4 cursor-pointer text-sky-200" key={pares[0]}>{pares[0]}</li>
         ))}
     </ul>)
 
     return(
         <ul className="bg-blue-500 flex flex-col text-center select-none">
-            <li key={titulo} className="hover:bg-blue-400 py-4 cursor-pointer" onClick={
+            <li key={titulo} className="hover:bg-blue-400 py-4 cursor-pointer text-sky-200 font-semibold" onClick={
                 ()=>{cambiar_estado(opcion)}
             }>{titulo}</li>
             {submenu}
