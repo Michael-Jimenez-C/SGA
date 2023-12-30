@@ -1,6 +1,8 @@
 'use client'
 import Hedr from '../header'
 import Submenu from '../submenu'
+import Barra from '../barra_lateral'
+import Panel from '../Panel'
 
 export default function home() {
 
@@ -8,7 +10,7 @@ export default function home() {
     <main className="flex min-h-screen flex-col items-center justify-between bg-gradient-to-r from-cyan-300 to-blue-500">
     <Hedr/>
     <div className="flex w-full flex-col sm:flex-row">
-      <div className="min-h-screen w-full sm:w-96">
+      <Barra>
         <Submenu titulo="Actualizar datos" items={[
           ['Actualizar datos'],
           ['Inscribir materias']
@@ -36,8 +38,11 @@ export default function home() {
           ['Historia académica'],
           ['Herramientas e interfaces']
           ]}/>
-      </div>
-      <div className="min-h-screen w-full"></div>
+      </Barra>
+      
+      <Panel>
+        
+      </Panel>
     </div>
     </main>
   )
